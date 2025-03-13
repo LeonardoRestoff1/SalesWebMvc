@@ -15,11 +15,21 @@ namespace SalesWebMvc.Controllers
 
         public IActionResult Index()
         {
+            
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Pagina de Vendas MVC";
+            ViewData["Aluno"] = "Leonardo Restoff Zanchetta";
+            
             return View();
         }
 
         public IActionResult Privacy()
         {
+             
             return View();
         }
 
