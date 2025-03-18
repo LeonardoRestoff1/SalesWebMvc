@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SalesWebMvc.Data;
 using System.Configuration;
 using Microsoft.AspNetCore.Builder;
+using SalesWebMvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseMySql(strConn, ServerVersion.AutoDetect(strConn)));
 
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<VendedorService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
