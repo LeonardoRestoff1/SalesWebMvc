@@ -12,12 +12,21 @@ var strConn = configuration.GetConnectionString("SalesWebMvcContext");
 builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseMySql(strConn, ServerVersion.AutoDetect(strConn)));
 
+builder.Services.AddScoped<SeedingService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
 var app = builder.Build();
+
+// Adicionando o SeedingService
+using (var scope = app.Services.CreateScope())
+{
+    var seedingService = scope.ServiceProvider.GetRequiredService<SeedingService>();
+    await seedingService.Seed(); // Mudando para um método assíncrono
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
