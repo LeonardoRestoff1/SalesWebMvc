@@ -4,58 +4,91 @@
     ViewData["Title"] = "Vendedores";
 }
 
-<h1>@ViewData["Title"]</h1>
+<style>
+    .btn-group a {
+        margin-right: 10px;
+    }
 
-<p>Pagina de Vendedores</p>
-<p>
-    <a asp-action="Criar" class="btn btn-default">Adicionar Novo</a>
-</p>
+    table th, table td {
+        text-align: center;
+    }
 
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDeNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalarioBase)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    .table th {
+        background-color: #f8f9fa;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .page-header {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+
+    <h1 class="page-header">@ViewData["Title"]</h1>
+
+    <p>Pagina de Vendedores</p>
+    <p>
+        <a asp-action="Criar" class="btn btn-primary">Adicionar Novo</a>
+    </p>
+
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataDeNascimento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SalarioBase)
-                </td>
-                <td>                   
-                    <a asp-action="Details" asp-rout-id="@item.Id">Detalhes</a>
-                    <a asp-action="Edit" asp-rout-id="@item.Id">Editar</a>
-                    <a asp-action="Delete" asp-rout-id="@item.Id">Deletar</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataDeNascimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalarioBase)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-
-
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataDeNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalarioBase)
+                    </td>
+                    <td class="btn-group">
+                        <a asp-action="Details" asp-rout-id="@item.Id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Edit" asp-rout-id="@item.Id" class="btn btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-
 
